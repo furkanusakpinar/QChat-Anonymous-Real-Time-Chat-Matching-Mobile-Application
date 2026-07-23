@@ -92,10 +92,4 @@ This app requires a Firebase project to function. You have two options:
 2. Fill in your Firebase project credentials
 3. The app will read from `.env` on startup
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 </div>
