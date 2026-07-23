@@ -8,40 +8,27 @@ import CryptoJS from 'crypto-js';
 const FIREBASE_CONFIG_KEY = 'QCHAT_FIREBASE_CONFIG';
 
 const defaultConfig = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
+  apiKey: "AIzaSyDnRA3hz4SiVZa-nmdhjhY4jXf7gvVNt8U",
+  authDomain: "qchat-8c659.firebaseapp.com",
+  databaseURL: "https://qchat-8c659-default-rtdb.firebaseio.com",
+  projectId: "qchat-8c659",
+  storageBucket: "qchat-8c659.firebasestorage.app",
+  messagingSenderId: "99989054876",
+  appId: "1:99989054876:web:2ee3c363888f31f7e95459",
+  measurementId: "G-3TEV48RXFT"
 };
 
 let app, db, rtdb;
 let initPromise = null;
 
-export const isFirebaseConfigured = async () => {
+const initializeFirebase = async () => {
+  let config = defaultConfig;
   try {
     const saved = await ReactNativeAsyncStorage.getItem(FIREBASE_CONFIG_KEY);
     if (saved) {
-      const parsed = JSON.parse(saved);
-      return !!(parsed.apiKey && parsed.projectId);
+      config = JSON.parse(saved);
     }
   } catch {}
-  return false;
-};
-
-const initializeFirebase = async () => {
-  let config = defaultConfig;
-  const saved = await ReactNativeAsyncStorage.getItem(FIREBASE_CONFIG_KEY);
-  if (saved) {
-    config = JSON.parse(saved);
-  }
-
-  if (!config.apiKey || !config.projectId) {
-    throw new Error('Firebase not configured');
-  }
 
   app = getApps().length === 0 ? initializeApp(config) : getApp();
   db = getFirestore(app);
@@ -50,10 +37,7 @@ const initializeFirebase = async () => {
 
 const ensureFirebase = async () => {
   if (!initPromise) {
-    initPromise = initializeFirebase().catch((err) => {
-      initPromise = null;
-      throw err;
-    });
+    initPromise = initializeFirebase();
   }
   return initPromise;
 };

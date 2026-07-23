@@ -13,10 +13,9 @@ import { ChatScreen } from '../screens/ChatScreen';
 import { HistoryScreen } from '../screens/HistoryScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
 
-import { FirebaseSetupModal } from '../components/FirebaseSetupModal';
 import { useStore } from '../redux/useStore';
 import { getCachedUser, getCachedLanguage } from '../utils/cache';
-import { ensureFirebase, isFirebaseConfigured } from '../utils/firebase';
+import { ensureFirebase } from '../utils/firebase';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,23 +26,10 @@ export const AppNavigator = () => {
   const navKey = useStore((state) => state.navKey);
   const isLoggedIn = user?.isLoggedIn;
   const [loading, setLoading] = useState(true);
-  const [showFirebaseSetup, setShowFirebaseSetup] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const configured = await isFirebaseConfigured();
-      if (!configured) {
-        setShowFirebaseSetup(true);
-        setLoading(false);
-        return;
-      }
-      try {
-        await ensureFirebase();
-      } catch {
-        setShowFirebaseSetup(true);
-        setLoading(false);
-        return;
-      }
+      await ensureFirebase();
       const cached = await getCachedUser();
       if (cached && cached.isLoggedIn) {
         setUser(cached);
@@ -58,42 +44,6 @@ export const AppNavigator = () => {
     return (
       <View style={{ flex: 1, backgroundColor: colors.background, alignItems: 'center', justifyContent: 'center' }}>
         <ActivityIndicator size="large" color={colors.primary} />
-      </View>
-    );
-  }
-
-  if (showFirebaseSetup) {
-    return (
-      <View style={{ flex: 1, backgroundColor: colors.background }}>
-        <FirebaseSetupModal visible onClose={() => {
-          setShowFirebaseSetup(false);
-          setLoading(true);
-          // restart setup
-          setTimeout(() => {
-            (async () => {
-              const configured = await isFirebaseConfigured();
-              if (!configured) {
-                setShowFirebaseSetup(true);
-                setLoading(false);
-                return;
-              }
-              try {
-                await ensureFirebase();
-              } catch {
-                setShowFirebaseSetup(true);
-                setLoading(false);
-                return;
-              }
-              const cached = await getCachedUser();
-              if (cached && cached.isLoggedIn) {
-                setUser(cached);
-              }
-              const lang = await getCachedLanguage();
-              setLanguage(lang);
-              setLoading(false);
-            })();
-          }, 300);
-        }} />
       </View>
     );
   }
