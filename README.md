@@ -78,17 +78,9 @@ npx expo start
 
 This app requires a Firebase project to function. You have two options:
 
-**Option 1 - In-App Setup (Recommended):**
-- Create a Firebase project at [firebase.google.com](https://firebase.google.com)
-- Enable Firestore Database and Authentication
-- Go to Project Settings > Web App and copy the config JSON
-- Launch the app and go to Profile > Firebase Setup
-- Paste the config JSON and save
+**Option 1 - In-App Setup (Recommended):** Create a Firebase project at [firebase.google.com](https://firebase.google.com), enable Firestore Database and Authentication, go to Project Settings > Web App and copy the config JSON. Launch the app and go to Profile > Firebase Setup, then paste the config JSON and save.
 
-**Option 2 - Environment File:**
-- Create a `.env` file in the root directory
-- Add your Firebase project credentials (use the format from `app/utils/firebase.js` imports)
-- The app will read from `.env` on startup
+**Option 2 - Environment File:** Create a `.env` file in the root directory with your Firebase project credentials. The app will read from `.env` on startup.
 
 ---
 
