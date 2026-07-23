@@ -79,9 +79,6 @@ cd QChat
 # Install dependencies
 npm install
 
-# (Optional) Configure Firebase - copy and fill in your credentials
-cp .env.example .env
-
 # Start the application
 npx expo start
 ```
@@ -102,8 +99,8 @@ This app requires a Firebase project to function. You have two options:
 5. Paste the config JSON and save
 
 **Option 2 - Environment File:**
-1. Copy `.env.example` to `.env`
-2. Fill in your Firebase project credentials
+1. Create a `.env` file in the root directory
+2. Add your Firebase project credentials (use the format from `app/utils/firebase.js` imports)
 3. The app will read from `.env` on startup
 
 ---
