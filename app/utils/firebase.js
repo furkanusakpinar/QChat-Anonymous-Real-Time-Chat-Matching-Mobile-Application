@@ -2,20 +2,30 @@ import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs, orderBy, limit, addDoc, serverTimestamp, deleteDoc } from 'firebase/firestore';
 import { getDatabase } from 'firebase/database';
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
-
 import CryptoJS from 'crypto-js';
+
+import {
+  FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_DATABASE_URL,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_APP_ID,
+  FIREBASE_MEASUREMENT_ID,
+} from '@env';
 
 const FIREBASE_CONFIG_KEY = 'QCHAT_FIREBASE_CONFIG';
 
 const defaultConfig = {
-  apiKey: "AIzaSyDnRA3hz4SiVZa-nmdhjhY4jXf7gvVNt8U",
-  authDomain: "qchat-8c659.firebaseapp.com",
-  databaseURL: "https://qchat-8c659-default-rtdb.firebaseio.com",
-  projectId: "qchat-8c659",
-  storageBucket: "qchat-8c659.firebasestorage.app",
-  messagingSenderId: "99989054876",
-  appId: "1:99989054876:web:2ee3c363888f31f7e95459",
-  measurementId: "G-3TEV48RXFT"
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  databaseURL: FIREBASE_DATABASE_URL,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+  appId: FIREBASE_APP_ID,
+  measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
 let app, db, rtdb;
