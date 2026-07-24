@@ -50,6 +50,21 @@ QChat is a modern, feature-rich, and user-friendly anonymous chat platform that 
 
 ---
 
+## 📸 Screenshots
+
+<div align="center">
+  <img src="assets/IMG_4119.PNG" width="200" />
+  <img src="assets/IMG_4120.PNG" width="200" />
+  <img src="assets/IMG_4121.PNG" width="200" />
+  <img src="assets/IMG_4122.PNG" width="200" />
+  <img src="assets/IMG_4124.PNG" width="200" />
+  <img src="assets/IMG_4125.PNG" width="200" />
+  <img src="assets/IMG_4126.PNG" width="200" />
+  <img src="assets/IMG_4127.PNG" width="200" />
+</div>
+
+---
+
 ## 🚀 Getting Started
 
 Follow these steps to run the project in your local environment:
